@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="blob:https://github.com/b7895768-1019-4134-b141-0adc89d692b3" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/Festival04/Project/main/resources/img/logo.png" width="400" alt="Festival Logo"></a></p>
 
 <p align="center">
     Festival Project
