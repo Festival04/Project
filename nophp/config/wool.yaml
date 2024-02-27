@@ -1,0 +1,11 @@
+---
+app: nophp
+secret_key: CHANGEME_SECRET
+onstart: app/onstart.php
+routes:
+  /: app/viewcontrollers/index.php
+static:
+  /files/<path:path>: static/
+json:
+  /api/login: app/api/login.php
+  /api/register: app/api/register.php
