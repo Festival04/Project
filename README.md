@@ -4,6 +4,9 @@
     Festival Project
 </p>
 
+## Launching
+
+To start the project you will need to have PHP, Laravel and NoPHP installed
 
 ## License
 

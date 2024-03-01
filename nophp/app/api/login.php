@@ -20,12 +20,6 @@ if ($_SERVER['METHOD'] == 'POST') {
       ?die;
     }
 
-    // $_SESSION['current'] = {};
-    // $_SESSION['current']['id'] = $user->id;
-    // $_SESSION['current']['email'] = $_SERVER["form"]["email"];
-
-    // $_SESSION['current']['name'] = $user->name;
-
     echo json_encode(
         [
             "username" => $user->username,
