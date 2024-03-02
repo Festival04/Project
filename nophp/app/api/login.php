@@ -12,12 +12,12 @@ if ($_SERVER['METHOD'] == 'POST') {
     // User doesnt exist
     if ($user->id == -1) {
       echo json_encode(["user_error" => "Password is invalid or the user does not exist"]);
-      ?die;
+      die();
     }
     // Check if password is correct
     if( bcrypt_checkpw($_SERVER['form']['password'], $user->password) == false ) {
       echo json_encode(["user_error" => "Password is invalid or the user does not exist"]);
-      ?die;
+      die();
     }
 
     echo json_encode(

@@ -9,27 +9,27 @@ if ($_SERVER['METHOD'] == 'POST') {
     // Username is empty
     if ( empty($_SERVER['form']['username']) ) { 
         echo json_encode(["username_error" => "Username can not be blank"]); 
-        ?die;
+        die();
     }
     // Email is empty
     if ( empty($_SERVER['form']['email']) ) {
         echo json_encode(["email_error" => "Email can not be blank"]); 
-        ?die;
+        die();
     }
     // Password is empty
     if ( empty($_SERVER['form']['password']) ) {
         echo json_encode(["password_error" => "Password can not be blank"]); 
-        ?die;
+        die();
     }
     // Name is empty
     if ( empty($_SERVER['form']['name']) ) { 
         echo json_encode(["name_error" => "Name can not be blank"]); 
-        ?die;
+        die();
     }
     // Check if the password and verify password match
     if ($_SERVER['form']['password'] != $_SERVER['form']['vpassword']) {
         echo json_encode(["vpassword_error" => "Passwords dont match"]);
-        ?die;
+        die();
     }
 
     // Hash the password
@@ -51,7 +51,7 @@ if ($_SERVER['METHOD'] == 'POST') {
                 "system" => "failed to register user. Most likely a user already exists"
             ]
         );
-        ?die;
+        die();
     }
 
     echo json_encode(

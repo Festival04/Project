@@ -9,7 +9,6 @@ require_once('app/common.php');
 require_once('app/controllers/page.php');
 require_once('app/controllers/sitemap.php');
 session_start();
-
 // Let's try to create an index 
 
 // Create a user Controller instance
