@@ -18,7 +18,10 @@ CREATE TABLE IF NOT EXISTS user (
   username TEXT NOT NULL UNIQUE,
   name TEXT NOT NULL,
   email TEXT NOT NULL UNIQUE,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  role TEXT,
+  /*profilePicture BLOB,*/
+  registrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 `;
 $sitemap_sql = `
@@ -26,6 +29,28 @@ CREATE TABLE IF NOT EXISTS sitemap (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   route TEXT NOT NULL UNIQUE,
   pageid INT NOT NULL,
+  visibility TEXT DEFAULT 'private'
+);
+`;
+$restaurant_sql = `
+CREATE TABLE IF NOT EXISTS restaurant (
+  restaurantID INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  price REAL NOT NULL,
+  cuisine TEXT NOT NULL /*array*/,
+  starsAmount INT NOT NULL,
+  description TEXT NOT NULL,
+  pageid INT NOT NULL UNIQUE,
+  /*amountOfSeats INT NOT NULL, */
+  FOREIGN KEY (pageid) REFERENCES pages(pageid)
+);
+`;
+$session_sql = `
+CREATE TABLE IF NOT EXISTS session (
+  session ID INTEGER PRIMARY KEY AUTOINCREMENT,
+  timeStart TEXT NOT NULL,
+  timeEnd TEXT NOT NULL,
+  pageID INT NOT NULL,
   visibility TEXT DEFAULT 'private'
 );
 `;
