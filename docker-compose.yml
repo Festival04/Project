@@ -1,0 +1,22 @@
+version: '3'
+services:
+  php-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    ports:
+      - "8000:8000"
+    networks:
+      - my-network
+
+  nophp-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.nophp
+    ports:
+      - "8081:8081"
+    networks:
+      - my-network
+
+networks:
+  my-network:

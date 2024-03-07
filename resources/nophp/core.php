@@ -24,7 +24,7 @@ class Mixin {
     private $_can_affect = ["body", "head", "header"];
 
     public function __construct() {
-        assert($this->_can_affect.contains($this->affects));
+        assert(in_array($this->affects, $this->_can_affect));
     }
 
     protected function _body($dom, $body) {}
