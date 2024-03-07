@@ -1,5 +1,6 @@
 <?php
 // 02.2024 Artur Z (HUSKI3@GitHub)
+namespace UserControllerNS;
 
 class UserController {
     public function __construct() 

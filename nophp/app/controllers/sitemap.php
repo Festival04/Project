@@ -2,7 +2,7 @@
 // 02.2024 Artur Z (HUSKI3@GitHub)
 
 class SitemapController {
-
+    
     public function __construct() 
     {
         require_once("app/models/page.php");
