@@ -53,3 +53,15 @@ Route::get('/', function () {
         view('welcome', ["nophp_index" => $content])
     )->render([new TailwindMixin]); // Add tailwind css
 });
+
+// Below is an example for a simple route that offers a template
+// as well as some basic css via the TailwindMixin
+Route::get('/example', 
+    function () {
+        return Page::from_view(
+            view("example", [
+                "example_text" => "test"
+            ])
+        )->render([new TailwindMixin]);
+    }
+);
