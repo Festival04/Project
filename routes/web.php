@@ -22,7 +22,7 @@ include_once(__DIR__ . "/../resources/nophp/mixins.php");
 global $nophp;
 
 
-$nophp = new NoPHP("nophp-app:8081");
+$nophp = new NoPHP("0.0.0.0:8081");
 
 Route::get('/nophp', $nophp->snappy("/", [new TailwindMixin]));
 

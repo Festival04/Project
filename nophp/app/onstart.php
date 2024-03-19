@@ -28,34 +28,58 @@ $sitemap_sql = `
 CREATE TABLE IF NOT EXISTS sitemap (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   route TEXT NOT NULL UNIQUE,
-  pageid INT NOT NULL,
+  pageid INTEGER NOT NULL,
   visibility TEXT DEFAULT 'private'
 );
 `;
 $restaurant_sql = `
 CREATE TABLE IF NOT EXISTS restaurant (
-  restaurantID INTEGER PRIMARY KEY AUTOINCREMENT,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   price REAL NOT NULL,
-  cuisine TEXT NOT NULL /*array*/,
-  starsAmount INT NOT NULL,
+  discount REAL DEFAULT 12.00,
+  starsAmount INTEGER NOT NULL,
+  address TEXT NOT NULL,
+  header TEXT NOT NULL,
   description TEXT NOT NULL,
-  pageid INT NOT NULL UNIQUE,
-  /*amountOfSeats INT NOT NULL, */
+  pageid INTEGER NOT NULL UNIQUE,
+  amountOfSeats INTEGER NOT NULL, 
+  isProvidingRecipe INTEGER NOT NULL, /* SQLite doesn't support boolean so we have to use integer instead */
   FOREIGN KEY (pageid) REFERENCES pages(pageid)
 );
 `;
 $session_sql = `
 CREATE TABLE IF NOT EXISTS session (
-  session ID INTEGER PRIMARY KEY AUTOINCREMENT,
-  timeStart TEXT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  restaurantID INTEGER NOT NULL,
+  timeStart TEXT NOT NULL, /*could be DATE*/
   timeEnd TEXT NOT NULL,
-  pageID INT NOT NULL,
-  visibility TEXT DEFAULT 'private'
+  takenSeats INTEGER NOT NULL DEFAULT 0,
+  /*pageid INTEGER NOT NULL, probably isn't required*/
+  FOREIGN KEY (restaurantID) REFERENCES restaurant(id)
+);
+`;
+/* when restaurant is created, we have to also add */
+$cuisine_sql = `
+CREATE TABLE IF NOT EXISTS cuisines (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  restaurantID INTEGER NOT NULL,
+  cuisine TEXT NOT NULL,
+  FOREIGN KEY (restaurantID) REFERENCES restaurant(id)
+);
+`;
+$restaurant_pictures_sql = `
+CREATE TABLE IF NOT EXISTS restaurantPictures (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  restaurantID INTEGER NOT NULL,
+  imageid TEXT NOT NULL,
+  FOREIGN KEY (restaurantID) REFERENCES restaurant(id)
 );
 `;
 $conn = sql_connect("db.sql");
 sql_query($conn, $sql);
 sql_query($conn, $user_sql);
 sql_query($conn, $sitemap_sql);
+sql_query($conn, $restaurant_sql);
+sql_query($conn, $session_sql);
 ?>
